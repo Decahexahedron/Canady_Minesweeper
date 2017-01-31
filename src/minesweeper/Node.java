@@ -7,7 +7,7 @@ public class Node {
     Node dl, d, dr;
     int v;
     boolean hidden;
-
+    String memes = "⁘▢□☐   ⚑ ⌖";
     @Override
     public String toString() {
         return "Node{" + "ul=" + ul + ", u=" + u + ", ur=" + ur + ", l=" + l + ", r=" + r + ", dl=" + dl + ", d=" + d + ", dr=" + dr + '}';
