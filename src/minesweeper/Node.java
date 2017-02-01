@@ -6,8 +6,9 @@ public class Node {
     Node l, r;
     Node dl, d, dr;
     int v;
-    boolean hidden;
+    boolean hidden, flag;
     String memes = "⁘▢□☐   ⚑ ⌖";
+
     @Override
     public String toString() {
         return "Node{" + "ul=" + ul + ", u=" + u + ", ur=" + ur + ", l=" + l + ", r=" + r + ", dl=" + dl + ", d=" + d + ", dr=" + dr + '}';
@@ -16,6 +17,15 @@ public class Node {
     Node() {
         v = 0;
         hidden = true;
+        flag = false;
+    }
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
     }
 
     public void setV(int v) {
