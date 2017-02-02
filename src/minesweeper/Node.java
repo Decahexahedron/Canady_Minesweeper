@@ -7,7 +7,7 @@ public class Node {
     Node dl, d, dr;
     int v;
     boolean hidden, flag;
-    String memes = "⁘▢□☐   ⚑ ⌖";
+    String memes = "⁘▢□☐   ⚑ ⌖⁕⁕";
 
     @Override
     public String toString() {

@@ -1,5 +1,7 @@
 package minesweeper;
 
+import java.util.*;
+
 public class Minesweeper {
 
     public static final int h = 9;
@@ -9,6 +11,9 @@ public class Minesweeper {
         init();
         numCheck();
         print();
+        while (true) {
+            input();
+        }
     }
     static Node a0, a1, a2, a3, a4, a5, a6, a7, a8;
     static Node b0, b1, b2, b3, b4, b5, b6, b7, b8;
@@ -32,18 +37,55 @@ public class Minesweeper {
         {i0, i1, i2, i3, i4, i5, i6, i7, i8}
     };
 
+    static void input() {
+        Scanner s = new Scanner(System.in);
+        int x, y;
+        boolean flagnext, cinput;
+        String input;
+        System.out.println("Flag or unflag a coordinate? (y/n)");
+        input = s.nextLine();
+        if (input.equalsIgnoreCase("y")) {
+            flagnext = true;
+            cinput = true;
+        } else if (input.equalsIgnoreCase("n")) {
+            flagnext = false;
+            cinput = true;
+        } else {
+            flagnext = false;
+            cinput = false;
+        }
+        if (cinput) {
+            System.out.print("Please input an X value: ");
+            x = s.nextInt();
+            System.out.print("Please input an Y value: ");
+            y = s.nextInt();
+            if (flagnext) {
+                if (a[x][y].isFlag()) {
+                    a[x][y].setFlag(false);
+                } else {
+                    a[x][y].setFlag(true);
+                }
+            } else {
+                a[x][y].setHidden(false);
+            }
+        }
+
+    }
+
     static void print() {
+        System.out.println("   1 2 3 4 5 6 7 8 9");
         for (int i = 0; i < h; i++) {
+            System.out.print(i + "| ");
             for (int j = 0; j < w; j++) {
                 if (a[i][j].isHidden()) {
-                    System.out.print("█");
+                    System.out.print("◼");
                 } else {
                     if (a[i][j].isFlag()) {
                         System.out.print("⚑");
                     } else if (a[i][j].v == 0) {
                         System.out.print("□");
                     } else if (a[i][j].v == 10) {
-                        System.out.print("⌖");
+                        System.out.print("≎");
                     } else {
                         System.out.print(a[i][j].v);
                     }
@@ -61,7 +103,7 @@ public class Minesweeper {
             }
         }
 
-        for (int t = 0; t < 12; t++) {
+        for (int t = 0; t < 13; t++) { // place mines
             int traph = (int) Math.floor(Math.random() * h);
             int trapw = (int) Math.floor(Math.random() * w);
             a[traph][trapw].setV(10);
@@ -100,7 +142,6 @@ public class Minesweeper {
                         a[i][j].setDr(a[i + 1][j + 1]);
                     }
                 }
-
             }
         }
     }
